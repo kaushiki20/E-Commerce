@@ -1,10 +1,12 @@
 import React from "react";
 import { ReactComponent as Logo } from "./assests/crown.svg";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import Cart from "./Cart";
 import { auth } from "../firebase/FireBaseUtils";
 import "./NavBar.scss";
-
-const NavBar = ({ currentUser }) => {
+import CartDropDown from "./CartDropDown";
+const NavBar = ({ currentUser, hidden }) => {
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -24,6 +26,7 @@ const NavBar = ({ currentUser }) => {
               auth.signOut();
             }}
           >
+            {" "}
             SIGN OUT
           </div>
         ) : (
@@ -31,9 +34,16 @@ const NavBar = ({ currentUser }) => {
             SIGN-IN
           </Link>
         )}
+        <Cart />
       </div>
+      {hidden ? null : <CartDropDown />}
     </div>
   );
 };
 
-export default NavBar;
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+  currentUser,
+  hidden,
+});
+
+export default connect(mapStateToProps)(NavBar);
