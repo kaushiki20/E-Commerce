@@ -6,6 +6,7 @@ import Navbar from "./components/NavBar";
 import "./App.css";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { auth, createUserProfileDocument } from "./firebase/FireBaseUtils";
+
 import { connect } from "react-redux";
 import { setCurrentUser } from "./redux/UserAction";
 import { selectCurrentUser } from "./redux/UserSelectors";
