@@ -3,14 +3,14 @@ import WithSpinner from "../components/WithSpinner";
 import CollectionOverviewContainer from "../components/CollectionOverviewContainer";
 
 import { connect } from "react-redux";
-import { fetchCollectionsStartAsync } from "../redux/ShopAction";
+import { fetchCollectionsStart } from "../redux/ShopAction";
 import { Route } from "react-router-dom";
 import CollectionContainer from "./CollectionContainer";
 
 class Shop extends React.Component {
   componentDidMount() {
-    const { fetchCollectionsStartAsync } = this.props;
-    fetchCollectionsStartAsync();
+    const { fetchCollectionsStart } = this.props;
+    fetchCollectionsStart();
   }
 
   render() {
@@ -33,6 +33,6 @@ class Shop extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchCollectionsStartAsync: () => dispatch(fetchCollectionsStartAsync()),
+  fetchCollectionsStart: () => dispatch(fetchCollectionsStart()),
 });
 export default connect(null, mapDispatchToProps)(Shop);
